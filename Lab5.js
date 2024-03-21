@@ -26,6 +26,18 @@ const Lab5 = (app) => {
     todo.title = title;
     res.json(todos);
   });
+  app.get("/a5/todos/:id/completed/:completed", (req, res) => {
+    const { id, completed } = req.params;
+    const todo = todos.find((t) => t.id === parseInt(id));
+    todo.completed = completed;
+    res.json(todos);
+  });
+  app.get("/a5/todos/:id/description/:description", (req, res) => {
+    const { id, description } = req.params;
+    const todo = todos.find((t) => t.id === parseInt(id));
+    todo.description = description;
+    res.json(todos);
+  });
   app.get("/a5/todos/:id/delete", (req, res) => {
     const { id } = req.params;
     const todo = todos.find((t) => t.id === parseInt(id));
@@ -91,9 +103,9 @@ const Lab5 = (app) => {
     assignment.score = newScore;
     res.json(assignment);
   });
-  app.get("/a5/assignment/completed/:newCompletedStatus", (req, res) => {
-    const { newCompletedStatus } = req.params;
-    assignment.completed = newCompletedStatus;
+  app.get("/a5/assignment/completed/:newCompleted", (req, res) => {
+    const { newCompleted } = req.params;
+    assignment.completed = newCompleted;
     res.json(assignment);
   });
   app.get("/a5/welcome", (req, res) => {
